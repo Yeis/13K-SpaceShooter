@@ -1,26 +1,31 @@
 kontra.init();
 
-var sprite = kontra.sprite({
-    x: 100,        // starting x,y position of the sprite
-    y: 80,
-    color: 'red',  // fill color of the sprite rectangle
-    width: 20,     // width and height of the sprite rectangle
-    height: 40,
-    dx: 2          // move the sprite 2px to the right every frame
-  });
-  
+var spaceship = new Spaceship();
+var width = kontra.canvas.width , height = kontra.canvas.height;
+function movementSetup(){
+    kontra.keys.bind('left',()=>{ spaceship.move('left');});
+    kontra.keys.bind('right',()=>{spaceship.move('right');});
+    kontra.keys.bind('up',()=>{spaceship.move('up');});
+    kontra.keys.bind('down',()=>{spaceship.move('down');});
+    
+}
+
 var loop = kontra.gameLoop({  // create the main game loop
-    update: function() {        // update the game state
-        sprite.update();
+    update: function() { 
+        
+        movementSetup();
+       
+        // update the game state
+        spaceship.update();
 
         // wrap the sprites position when it reaches
         // the edge of the screen
-        if (sprite.x > kontra.canvas.width) {
-            sprite.x = -sprite.width;
-        }
+        // if (sprite.x > kontra.canvas.width) {
+        //     sprite.x = -sprite.width;
+        // }
     },
     render: function() {        // render the game state
-        sprite.render();
+        spaceship.render();
     }
 });
 
