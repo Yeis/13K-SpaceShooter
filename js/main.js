@@ -1,27 +1,47 @@
 kontra.init();
 
-var sprite = kontra.sprite({
-    x: 100,        // starting x,y position of the sprite
-    y: 80,
-    color: 'red',  // fill color of the sprite rectangle
-    width: 20,     // width and height of the sprite rectangle
-    height: 40,
-    dx: 2          // move the sprite 2px to the right every frame
-  });
-  
+var rectangle1 = new Rectangle(20, 20, 32, 32);
+var rectangle2 = new Rectangle(100, 30, 40, 40);
+var speed = 1.5;
+
+collisionManager.add(rectangle1);
+collisionManager.add(rectangle2);
+
+var handleInput = function() {
+    // Movement in X
+    if (kontra.keys.pressed('left')) {
+        rectangle1.sprite.dx = -speed;
+    }
+    else if (kontra.keys.pressed('right')) {
+        rectangle1.sprite.dx = speed;
+    }
+    else {
+        rectangle1.sprite.dx = 0;
+    }
+
+    // Movement in Y
+    if (kontra.keys.pressed('up')) {
+        rectangle1.sprite.dy = -speed;
+    }
+    else if (kontra.keys.pressed('down')) {
+        rectangle1.sprite.dy = speed;
+    }
+    else {
+        rectangle1.sprite.dy = 0;
+    }
+}
+
 var loop = kontra.gameLoop({  // create the main game loop
     update: function() {        // update the game state
-        sprite.update();
-
-        // wrap the sprites position when it reaches
-        // the edge of the screen
-        if (sprite.x > kontra.canvas.width) {
-            sprite.x = -sprite.width;
-        }
+        handleInput();
+        rectangle1.update();
+        rectangle2.update();
+        collisionManager.update();
     },
     render: function() {        // render the game state
-        sprite.render();
+        rectangle1.render();
+        rectangle2.render();
     }
 });
 
-loop.start();    // start the gam
+loop.start();    // start the game
