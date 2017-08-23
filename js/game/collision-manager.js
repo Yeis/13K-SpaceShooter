@@ -1,20 +1,20 @@
 var collisionManager = {
-    rectangles: [],
+    colliders: [],
 
-    add: function(rectangle) {
-        this.rectangles.push(rectangle);
+    add: function(collider) {
+        this.colliders.push(collider);
     },
 
     update: function() {
-        var length = this.rectangles.length;
+        var length = this.colliders.length;
         for (var i = 0; i < length; i++) {
             for (var j = i + 1; j < length; j++) {
-                var rect1 = this.rectangles[i];
-                var rect2 = this.rectangles[j];
+                var collider1 = this.colliders[i];
+                var collider2 = this.colliders[j];
 
-                if (rect1.overlaps(rect2)) {
-                    rect1.invokeOnOverlap();
-                    rect2.invokeOnOverlap();
+                if (collider1.overlaps(collider2)) {
+                    collider1.invokeOnOverlap();
+                    collider2.invokeOnOverlap();
                 }
             }
         }

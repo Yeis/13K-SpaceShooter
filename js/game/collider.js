@@ -1,4 +1,4 @@
-function Rectangle(x, y, width, height) {
+function Collider(x, y, width, height) {
     this.colors = {
         default: 'aqua',
         overlap: 'red'
@@ -27,6 +27,14 @@ function Rectangle(x, y, width, height) {
 
     this.bottom = function() {
         return this.sprite.y + this.height;
+    }
+
+    this.setDx = function(dx) {
+        this.sprite.dx = dx;
+    }
+
+    this.setDy = function(dy) {
+        this.sprite.dy = dy;
     }
 
     this.overlaps = function(other) {
