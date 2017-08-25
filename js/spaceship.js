@@ -2,31 +2,31 @@ function Spaceship(){
     this.sprite = kontra.sprite({
         x: 100,        // starting x,y position of the sprite
         y: 80,
+        dx:10,
+        dy:10,
         color: 'red',  // fill color of the sprite rectangle
         width: 40,     // width and height of the sprite rectangle
-        height: 20
-      });
-      this.speed = 10;
-    this.move = function(direction){
-        switch(direction){
-            case 'left':
-                this.sprite.x-=(3 * this.speed);
-                if(this.sprite.x < 0) this.sprite.x = 0;                              
-                break;
-            case 'right':
-                this.sprite.x+=(3 * this.speed);
-                if(this.sprite.x > ((kontra.canvas.width / 2) - this.sprite.width)) this.sprite.x = ((kontra.canvas.width / 2) - this.sprite.width);                                             
-                break;
-            case 'up':
-                this.sprite.y-=(3 * this.speed);
-                if(this.sprite.y < 0) this.sprite.y = 0;                              
-                break;
-            case 'down':
-            this.sprite.y+=(3 * this.speed); 
-            if(this.sprite.y > (kontra.canvas.height - this.sprite.height)) this.sprite.y = kontra.canvas.height - this.sprite.height;                                          
-            break;
+        height: 20,
+        update: function(){
+            if (kontra.keys.pressed('up')) {
+                this.y -= this.dy;
+            }
+            else if (kontra.keys.pressed('down')) {
+                this.y += this.dy;
+            }
+    
+            if (kontra.keys.pressed('left')) {
+                this.x -= this.dx;
+            }
+            else if (kontra.keys.pressed('right')) {
+                this.x += this.dx;
+            }
         }
-    }
+      });
+      //clamp position
+      this.sprite.position.clamp(0, 0, (kontra.canvas.width / 2 )- this.sprite.width, kontra.canvas.height - this.sprite.height);
+      
+ 
     this.update = function(){
         this.sprite.update();
     };

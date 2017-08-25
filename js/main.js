@@ -2,19 +2,14 @@ kontra.init();
 
 var spaceship = new Spaceship();
 var width = kontra.canvas.width , height = kontra.canvas.height;
-function movementSetup(){
-    kontra.keys.bind('left',()=>{ spaceship.move('left');});
-    kontra.keys.bind('right',()=>{spaceship.move('right');});
-    kontra.keys.bind('up',()=>{spaceship.move('up');});
-    kontra.keys.bind('down',()=>{spaceship.move('down');});
-    
-}
+kontra.keys.bind(['up', 'down', 'left', 'right'], function(e) {
+    e.preventDefault();
+  });
+
 
 var loop = kontra.gameLoop({  // create the main game loop
     update: function() { 
-        
-        movementSetup();
-       
+               
         // update the game state
         spaceship.update();
 
