@@ -24,4 +24,4 @@ var loop = kontra.gameLoop({  // create the main game loop
     }
 });
 
-loop.start();    // start the gam
+loop.start();    // start the game
