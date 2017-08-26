@@ -1,46 +1,26 @@
 kontra.init();
 
-var collider1 = new Collider(20, 20, 32, 32);
-var collider2 = new Collider(100, 30, 40, 40);
-var speed = 1.5;
+var spaceship = new Spaceship();
+var width = kontra.canvas.width , height = kontra.canvas.height;
+kontra.keys.bind(['up', 'down', 'left', 'right'], function(e) {
+    e.preventDefault();
+  });
 
-collisionManager.add(collider1);
-collisionManager.add(collider2);
-
-var handleInput = function() {
-    // Movement in X
-    if (kontra.keys.pressed('left')) {
-        collider1.setDx(-speed);
-    }
-    else if (kontra.keys.pressed('right')) {
-        collider1.setDx(speed);
-    }
-    else {
-        collider1.setDx(0);
-    }
-
-    // Movement in Y
-    if (kontra.keys.pressed('up')) {
-        collider1.setDy(-speed);
-    }
-    else if (kontra.keys.pressed('down')) {
-        collider1.setDy(speed);
-    }
-    else {
-        collider1.setDy(0);
-    }
-}
 
 var loop = kontra.gameLoop({  // create the main game loop
-    update: function() {        // update the game state
-        handleInput();
-        collider1.update();
-        collider2.update();
-        collisionManager.update();
+    update: function() { 
+               
+        // update the game state
+        spaceship.update();
+
+        // wrap the sprites position when it reaches
+        // the edge of the screen
+        // if (sprite.x > kontra.canvas.width) {
+        //     sprite.x = -sprite.width;
+        // }
     },
     render: function() {        // render the game state
-        collider1.render();
-        collider2.render();
+        spaceship.render();
     }
 });
 
