@@ -12,6 +12,8 @@ function Collider(x, y, width, height) {
         width: width,
         height: height,
     });
+    this.tag = '';
+    this.onOverlap = [];
 
     this.left = function() {
         return this.sprite.x;
@@ -49,8 +51,11 @@ function Collider(x, y, width, height) {
         return !(this.top() > other.bottom() || this.bottom() < other.top());
     }
 
-    this.invokeOnOverlap = function() {
+    this.invokeOnOverlap = function(other) {
         this.sprite.color = this.colors.overlap;
+        for (var i = 0; i < this.onOverlap.length; i++) {
+            this.onOverlap[i](other);
+        }
     }
 
     this.update = function() {
