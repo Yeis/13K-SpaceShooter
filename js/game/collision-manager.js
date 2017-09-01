@@ -13,8 +13,8 @@ var collisionManager = {
                 var collider2 = this.colliders[j];
 
                 if (collider1.overlaps(collider2)) {
-                    collider1.invokeOnOverlap();
-                    collider2.invokeOnOverlap();
+                    collider1.invokeOnOverlap(collider2);
+                    collider2.invokeOnOverlap(collider1);
                 }
             }
         }
