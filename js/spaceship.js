@@ -20,8 +20,7 @@ function Spaceship(){
             }
             else if (kontra.keys.pressed('right')) {
                 this.x += this.dx;
-            }
-        }
+            }}
       });
       //clamp position
       this.sprite.position.clamp(0, 0, (kontra.canvas.width / 2 )- this.sprite.width, kontra.canvas.height - this.sprite.height);
