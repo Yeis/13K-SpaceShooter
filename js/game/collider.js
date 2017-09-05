@@ -31,6 +31,14 @@ function Collider(x, y, width, height) {
         return this.sprite.y + this.height;
     }
 
+    this.setX = function(x) {
+        this.sprite.x = x;
+    }
+
+    this.setY = function(y) {
+        this.sprite.y = y;
+    }
+
     this.setDx = function(dx) {
         this.sprite.dx = dx;
     }
