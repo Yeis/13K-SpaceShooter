@@ -2,7 +2,14 @@ function LaserProjectile(width, height) {
     this.width = width;
     this.height = height;
     this.collider = new Collider(0, 0, width, height);
+    this.collider.tag = 'projectile';
     this.active = false;
+
+    this.collider.onOverlap.push(function(other) {
+        if (other.tag == 'enemy') {
+            this.active = false;
+        }
+    });
 
     this.activate = function(x, y, angle, speed) {
         this.collider.setX(x);
@@ -12,6 +19,7 @@ function LaserProjectile(width, height) {
         this.collider.setDx(Math.cos(angleRadians) * speed);
         this.collider.setDy(Math.sin(angleRadians) * speed);
 
+        collisionManager.add(this.collider);
         this.active = true;
     }
 
