@@ -5,7 +5,7 @@ var width = kontra.canvas.width , height = kontra.canvas.height;
 kontra.keys.bind(['up', 'down', 'left', 'right'], function(e) {
     e.preventDefault();
   });
-  var enemy = new Enemy(width - 40 , height/2 , null);
+  var enemy = new Enemy(width , height/2 , null);
   
 
 
