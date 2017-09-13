@@ -5,9 +5,9 @@ var width = kontra.canvas.width , height = kontra.canvas.height;
 kontra.keys.bind(['up', 'down', 'left', 'right'], function(e) {
     e.preventDefault();
   });
-  var enemy = new Enemy(width , height/2 , null);
-  
-
+var enemy = new Enemy(width - 40 , height/2 , null);
+// collisionManager.add(spaceship.collider);
+collisionManager.add(enemy.collider);
 
 var loop = kontra.gameLoop({  // create the main game loop
     update: function() { 
@@ -15,6 +15,7 @@ var loop = kontra.gameLoop({  // create the main game loop
         // update the game state
         spaceship.update();
         enemy.update();
+        collisionManager.update();
         // wrap the sprites position when it reaches
         // the edge of the screen
         // if (sprite.x > kontra.canvas.width) {

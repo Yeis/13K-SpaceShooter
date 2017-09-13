@@ -14,6 +14,7 @@ function Collider(x, y, width, height) {
     });
     this.tag = '';
     this.onOverlap = [];
+    this.active = true;
 
     this.left = function() {
         return this.sprite.x;
@@ -48,7 +49,7 @@ function Collider(x, y, width, height) {
     }
 
     this.overlaps = function(other) {
-        return this.overlapsX(other) && this.overlapsY(other); 
+        return this.active && other.active && this.overlapsX(other) && this.overlapsY(other); 
     }
 
     this.overlapsX = function(other) {
@@ -67,11 +68,15 @@ function Collider(x, y, width, height) {
     }
 
     this.update = function() {
-        this.sprite.color = this.colors.default;
-        this.sprite.update();
+        if (this.active) {
+            this.sprite.color = this.colors.default;
+            this.sprite.update();
+        }
     }
 
     this.render = function() {
-        this.sprite.render();
+        if (this.active) {
+            this.sprite.render();
+            }
     }
 }
