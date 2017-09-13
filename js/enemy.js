@@ -1,10 +1,11 @@
 function Enemy(x , y , sprite){
     this.bottom = false;
+    this.collider = new Collider(x, y, 40, 30);
     this.sprite = kontra.sprite({
         x: x,        // starting x,y position of the sprite
         y: y,
-        dx:10,
-        dy:10,
+        dx:5,
+        dy:5,
         color: 'blue',  // fill color of the sprite rectangle
         width: 40,     // width and height of the sprite rectangle
         height: 20,
@@ -21,11 +22,11 @@ function Enemy(x , y , sprite){
         }
     });
     //clamp position
-    this.sprite.position.clamp(0, 0, (kontra.canvas.width / 2 )- this.sprite.width, kontra.canvas.height - this.sprite.height);   
+    this.collider.sprite.position.clamp(0, 0, (kontra.canvas.width / 2 )- this.collider.sprite.width, kontra.canvas.height - this.collider.sprite.height);   
     this.update = function(){
-        this.sprite.update();
+        this.collider.update();
     };
     this.render =  function(){
-        this.sprite.render();
+        this.collider.render();
     };
 }
